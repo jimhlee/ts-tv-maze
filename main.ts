@@ -43,7 +43,7 @@ async function searchForShowAndDisplay(): Promise<void> {
   const searchTerm = $term.value;
   const shows = await searchShowsByTerm(searchTerm);
 
-  $episodesArea.innerHTML = "";
+  $episodesList.innerHTML = "";
   populateShows(shows);
 }
 
@@ -75,14 +75,10 @@ function populateEpisodes(episodes: tEpisode[]): void {
 
 async function getEpisodesAndDisplay(evt: Event): Promise<void> {
   const $clicked = evt.target as HTMLButtonElement;
-  if (!$clicked.classList.contains(".Show-getEpisodes")) {
-    console.log("test");
+  if (!$clicked.classList.contains("Show-getEpisodes")) {
     return;
   }
 
-  // here's one way to get the ID of the show: search "closest" ancestor
-  // with the class of .Show (which is put onto the enclosing div, which
-  // has the .data-show-id attribute).
   const $closest = (evt.target as HTMLElement).closest(".Show")!;
   const showId = Number($closest.getAttribute("data-show-id"));
   const episodes = await getEpisodesOfShow(showId);
