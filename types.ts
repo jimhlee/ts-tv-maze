@@ -1,15 +1,15 @@
 'use strict';
 
-// type tShowResultList = tShowResult[]
+
 
 type tShowResult = {
   show: {
     id: number,
     name: string,
     summary: string,
-    image: {medium: string};
-  }
-}
+    image: { medium: string; } | null;
+  };
+};
 
 type tShow = {
   id: number,
@@ -18,11 +18,20 @@ type tShow = {
   image: string;
 };
 
-type tEpisode = {
+type tEpisodeResult = {
   id: number,
-  name: number,
+  name: string,
   season: number,
   number: number;
 };
 
-export type { tShow, tEpisode, tShowResult };
+type tEpisode = {
+  id: number,
+  name: string,
+  season: number,
+  number: number;
+};
+
+
+
+export type { tShow, tEpisode, tShowResult, tEpisodeResult };
